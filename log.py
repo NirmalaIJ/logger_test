@@ -19,7 +19,7 @@ class CustomFormatter(logging.Formatter):
 def get_logger(log_file_name, log_sub_dir=""):
     """ Creates a Log File and returns Logger object """
 
-    windows_log_dir = r'D:\Documents\Python_ex\logger'
+    windows_log_dir = r'D:\Documents\Python_ex\logger_test'
     linux_log_dir = '/logs_dir/'
 
     # Build Log file directory, based on the OS and supplied input
@@ -40,6 +40,17 @@ def get_logger(log_file_name, log_sub_dir=""):
     """ Set the formatter of 'CustomFormatter' type as we need to log base function name and base file name """
     handler.setFormatter(CustomFormatter('%(asctime)s - %(levelname)-10s - %(filename)s - %(funcName)s - %(message)s'))
     logger.addHandler(handler)
+
+    # Define format for logs
+    fmt = '%(asctime)s | %(levelname)8s | %(message)s'
+
+    # Create stdout handler for logging to the console (logs all five levels)
+    stdout_handler = logging.StreamHandler()
+    stdout_handler.setLevel(logging.DEBUG)
+    stdout_handler.setFormatter(CustomFormatter(fmt))
+
+    # Add both handlers to the logger
+    logger.addHandler(stdout_handler)
 
     # Return logger object
     return logger

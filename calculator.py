@@ -31,4 +31,10 @@ class Calculator():
 if __name__ == '__main__':
     calculator = Calculator(5, 0, 'calculator_file', 'calculator_dir')
     calculator.add(third=2,fourth=3)
+
+    calculator.logger_obj.debug('This is a debug-level message')
+    calculator.logger_obj.info('This is an info-level message')
+    calculator.logger_obj.warning('This is a warning-level message')
+    calculator.logger_obj.error('This is an error-level message')
+    calculator.logger_obj.critical('This is a critical-level message')
     calculator.divide()
